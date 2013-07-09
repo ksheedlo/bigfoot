@@ -1,0 +1,14 @@
+{
+  "name": "bigfoot",
+  "version": "0.0.1",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/ksheedlo/bigfoot/blob/master/LICENSE"
+    }
+  ],
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-sass": "~0.4.1"
+  }
+}

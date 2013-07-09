@@ -1,0 +1,13 @@
+@import "utils";
+@import "variables";
+
+.btn {
+  display: inline-block;
+  @include bf-padding-2(4, 12);
+  margin-bottom: 0;
+  font-size: $baseFontSize;
+  line-height: $baseLineHeight;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+}

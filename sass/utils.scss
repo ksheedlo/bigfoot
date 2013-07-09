@@ -1,0 +1,40 @@
+/* Generic sizing functions
+ * 
+ * Bigfoot uses a scale where 1em = 10px. To prevent bugs involving nested
+ * elements, e.g., li li, we use rem instead of em as our preferred unit, and
+ * use px as a fallback. Sizes are specified without a unit.
+ */
+@mixin bf-size-one($prop, $arg) {
+  #{$prop}: #{$arg}px;
+  #{$prop}: #{$arg/10}rem;
+}
+
+@mixin bf-size-two($prop, $arg1, $arg2) {
+  #{$prop}: #{$arg1}px #{$arg2}px;
+  #{$prop}: #{$arg1/10}rem #{$arg2/10}rem;
+}
+
+@mixin bf-size-four($prop, $arg1, $arg2, $arg3, $arg4) {
+  #{$prop}: #{$arg1}px #{$arg2}px #{$arg3}px #{$arg4}px;
+  #{$prop}: #{$arg1/10}rem #{$arg2/10}rem #{$arg3/10}rem #{$arg4/10}rem;
+}
+
+/* Convenience functions for common sizing scenarios */
+
+@mixin bf-font-size($size) { @include bf-size-one(font-size, $size); }
+
+@mixin bf-padding($top, $right, $bottom, $left) {
+  @include bf-size-four(padding, $top, $right, $bottom, $left);
+}
+
+@mixin bf-padding-1($padding) {
+  @include bf-size-one($padding);
+}
+
+@mixin bf-padding-2($vert, $horz) {
+  @include bf-size-two(padding, $vert, $horz);
+}
+
+@mixin bf-padding-3($top, $right, $bottom) {
+  @include bf-size-three(padding, $top, $right, $bottom);
+}

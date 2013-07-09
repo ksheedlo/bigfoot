@@ -1,0 +1,112 @@
+/* Variables
+ *
+ * Colors and typography mostly taken from twitter/bootstrap.
+ */
+
+@import "utils";
+
+/* Grays */
+$black:       #000;
+$grayDarker:  #222;
+$grayDark:    #333;
+$gray:        #555;
+$grayLight:   #999;
+$grayLighter: #eee;
+$white:       #fff;
+
+/* Accent colors */
+$blue:      #049cdb;
+$blueDark:  #0064cd;
+$green:     #46a546;
+$red:       #9d261d;
+$yellow:    #ffc40d;
+$orange:    #f89406;
+$pink:      #c3325f;
+$purple:    #7a43b6;
+
+/* Scaffolding */
+$bodyBackground:  $white;
+$textColor:       $grayDark;
+
+/* Links */
+$linkColor:       #08c;
+$linkColorHover:  darken($linkColor, 15%);
+
+/* Typography */
+$sansFontFamily:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+$serifFontFamily: Georgia, "Times New Roman", Times, serif;
+$monoFontFamily:  Monaco, Menlo, Consolas, "Courier New", monospace;
+
+$baseFontSize:    14;
+$baseFontFamily:  $sansFontFamily;
+$baseLineHeight:  20;
+$altFontFamily:   $serifFontFamily;
+
+$headingsFontFamily:  inherit;
+$headingsFontWeight:  bold;
+$headingsColor:       inherit;
+
+/* Component sizing */
+$fontSizeLarge: $baseFontSize * 1.25;
+$fontSizeSmall: $baseFontSize * 0.85;
+$fontSizeMini:  $baseFontSize * 0.75;
+
+$paddingLarge:  11 19;
+$paddingSmall:  2 10;
+$paddingMini:   0 6;
+
+$baseBorderRadius:  4;
+$borderRadiusLarge: 6;
+$borderRadiusSmall: 3;
+
+/* Tables */
+$tableBackground:       transparent;
+$tableBackgroundAccent: #f9f9f9;
+$tableBackgroundHover:  #f5f5f5;
+$tableBorder:           #ddd;
+
+/* Buttons */
+$btnBackground:           $white;
+$btnBackgroundHighlight:  darken($white, 10%);
+
+$btnPrimaryBackground:              $linkColor;
+$btnPrimaryBackgroundHighlight:     adjust-hue($btnPrimaryBackground, 20%);
+
+$btnInfoBackground:                 #5bc0de;
+$btnInfoBackgroundHighlight:        #2f96b4;
+
+$btnSuccessBackground:              #62c462;
+$btnSuccessBackgroundHighlight:     #51a351;
+
+$btnWarningBackground:              lighten($orange, 15%);
+$btnWarningBackgroundHighlight:     $orange;
+
+$btnDangerBackground:               #ee5f5b;
+$btnDangerBackgroundHighlight:      #bd362f;
+
+$btnInverseBackground:              #444;
+$btnInverseBackgroundHighlight:     $grayDarker;
+
+/* Forms */
+$inputBackground:               $white;
+$inputBorder:                   #ccc;
+$inputBorderRadius:             $baseBorderRadius;
+$inputDisabledBackground:       $grayLighter;
+$formActionsBackground:         #f5f5f5;
+$inputHeight:                   $baseLineHeight + 10px; // base line-height + 8px vertical padding + 2px top/bottom border
+
+
+/* Dropdowns */
+$dropdownBackground:            $white;
+$dropdownBorder:                rgba(0,0,0,.2);
+$dropdownDividerTop:            #e5e5e5;
+$dropdownDividerBottom:         $white;
+
+$dropdownLinkColor:             $grayDark;
+$dropdownLinkColorHover:        $white;
+$dropdownLinkColorActive:       $white;
+
+$dropdownLinkBackgroundActive:  $linkColor;
+$dropdownLinkBackgroundHover:   $dropdownLinkBackgroundActive;
+
+
