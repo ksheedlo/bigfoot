@@ -4,37 +4,99 @@
  * elements, e.g., li li, we use rem instead of em as our preferred unit, and
  * use px as a fallback. Sizes are specified without a unit.
  */
-@mixin bf-size-one($prop, $arg) {
-  #{$prop}: #{$arg}px;
-  #{$prop}: #{$arg/10}rem;
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
 }
 
-@mixin bf-size-two($prop, $arg1, $arg2) {
-  #{$prop}: #{$arg1}px #{$arg2}px;
-  #{$prop}: #{$arg1/10}rem #{$arg2/10}rem;
+@function to-rems($num) {
+  $stripped: strip-unit($num);
+  @return #{$stripped/10}rem;
 }
 
-@mixin bf-size-four($prop, $arg1, $arg2, $arg3, $arg4) {
-  #{$prop}: #{$arg1}px #{$arg2}px #{$arg3}px #{$arg4}px;
-  #{$prop}: #{$arg1/10}rem #{$arg2/10}rem #{$arg3/10}rem #{$arg4/10}rem;
+@mixin bf-size($prop, $values...) {
+  $max: length($values);
+  $pxValues: '';
+  $remValues: '';
+
+  @for $i from 1 through $max {
+    $value: nth($values, $i);
+    $pxValue: $value;
+    $remValue: $value;
+
+    @if type-of($value) == "number" {
+      $pxValue: #{strip-unit($value)}px;
+      $remValue: to-rems($value);
+    }
+    $pxValues: #{$pxValues + $pxValue};
+    $remValues: #{$remValues + $remValue};
+    @if $i < $max {
+      $pxValues: #{$pxValues + " "};
+      $remValues: #{$remValues + " "};
+    }
+  } 
+
+  #{$prop}: $pxValues; 
+  #{$prop}: $remValues; 
 }
 
 /* Convenience functions for common sizing scenarios */
 
-@mixin bf-font-size($size) { @include bf-size-one(font-size, $size); }
+@mixin bf-font-size($size) { @include bf-size(font-size, $size); }
 
-@mixin bf-padding($top, $right, $bottom, $left) {
-  @include bf-size-four(padding, $top, $right, $bottom, $left);
+@mixin bf-padding($values...) {
+  @include bf-size(padding, $values...);
 }
 
-@mixin bf-padding-1($padding) {
-  @include bf-size-one($padding);
+@mixin bf-margin($values...) {
+  @include bf-size(margin, $values...);
 }
 
-@mixin bf-padding-2($vert, $horz) {
-  @include bf-size-two(padding, $vert, $horz);
+@mixin bf-width($width) {
+  @include bf-size(width, $width);
 }
 
-@mixin bf-padding-3($top, $right, $bottom) {
-  @include bf-size-three(padding, $top, $right, $bottom);
+@mixin bf-line-height($height) {
+  @include bf-size(line-height, $height);
+}
+
+@mixin bf-border-radius($radius) {
+  $radiusRems: to-rems($radius);
+
+  -webkit-border-radius:  $radiusRems;
+     -moz-border-radius:  $radiusRems;
+          border-radius:  $radiusRems;
+}
+
+@mixin bf-box-shadow($shadow) {
+  $max: length($shadow) - 1;
+  $shadowRems: '';
+  @for $i from 1 through $max {
+    $value: to-rems(nth($shadow, $i));
+    $shadowRems: #{$shadowRems + $value + " "};
+  }
+  $shadowRems: #{$shadowRems + nth($shadow, $max+1)};
+
+  -webkit-box-shadow: $shadowRems;
+     -moz-box-shadow: $shadowRems;
+          box-shadow: $shadowRems;
+}
+
+@mixin clearfix {
+  *zoom: 1;
+
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+    line-height: 0;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

@@ -1,0 +1,52 @@
+@import "variables";
+
+* {
+  /* Use border-box Box Sizing Everywhere 
+   *
+   * Paul Irish thinks this is a good idea. 
+   * http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+   */
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  /* Setting font-size on body to 62.5%
+   *
+   * This allows font at 1rem to equal 10px by default. Necessary for easy unit
+   * conversions.
+   */
+  font-size: 62.5%;
+  font-family: $baseFontFamily;
+  font-weight: 300; 
+  color: $textColor;
+  background-color: $bodyBackground;
+}
+
+a {
+  color: $linkColor;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: $linkColorHover;
+    text-decoration: underline;
+  }
+}
+
+.img-rounded {
+  @include bf-border-radius(6);
+}
+
+.img-polaroid {
+  @include bf-padding(4);
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: to-rems(1) solid rgba(0,0,0,.2);
+  @include bf-box-shadow(0 1 3 rgba(0,0,0,.1));
+}
+
+.img-circle {
+  @include bf-border-radius(500);
+}
